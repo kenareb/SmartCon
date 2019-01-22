@@ -6,6 +6,8 @@
     {
         private SmartConsoleOptions _options;
 
+        public static TextIndent DefaultIndent { get; private set; } = new TextIndent();
+
         public TextIndent()
         {
             _options = SmartConsoleOptions.DefaultOptions;
@@ -14,6 +16,16 @@
         public TextIndent(SmartConsoleOptions options)
         {
             _options = options;
+        }
+
+        public void IncreaseIndentationLevel()
+        {
+            _options.IncreaseIndent();
+        }
+
+        public void DecreaseIndentationLevel()
+        {
+            _options.DecreaseIndent();
         }
 
         public string IndentInput(string input)
@@ -51,6 +63,7 @@
                 }
             }
 
+            indentedText = builder.ToString();
             return indentedText;
         }
 
