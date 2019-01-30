@@ -6,15 +6,14 @@
     using System.Linq;
     using System.Text;
 
-    public delegate ArgumentHandleResult ArgumentHandler(string value);
+    public delegate void ArgumentHandler(string value);
 
-    public delegate ArgumentHandleResult ProcessHandler();
+    public delegate void PostProcessHandler();
 
     public class ArgumentProcessor
     {
         private ConcurrentDictionary<string, ArgumentHandler> _argHandler = new ConcurrentDictionary<string, ArgumentHandler>();
-        private ConcurrentDictionary<string, ArgumentHandleResult> _argResults = new ConcurrentDictionary<string, ArgumentHandleResult>();
-        private ConcurrentBag<ProcessHandler> _postProcessing = new ConcurrentBag<ProcessHandler>();
+        private ConcurrentBag<PostProcessHandler> _postProcessing = new ConcurrentBag<PostProcessHandler>();
 
         public ArgumentProcessor()
             : this(CommandLineDescription.DefaultCommandLine)
@@ -31,17 +30,15 @@
             _argHandler[key] = handler;
         }
 
-        public void RegisterPostProcessor(ProcessHandler handler)
+        public void RegisterPostProcessor(PostProcessHandler handler)
         {
             _postProcessing.Add(handler);
         }
 
         public CommandLineDescription CommandLineDescription { get; set; }
 
-        public ArgumentHandleResult Process(string[] args)
+        public void Process(string[] args)
         {
-            var r = ArgumentHandleResult.Handled;
-
             foreach (var a in args)
             {
                 var parts = a.Split(new[] { CommandLineDescription.KeyValueSeparator }, 2);
@@ -59,33 +56,15 @@
                     k = k.Substring(1);
                 }
 
-                var r1 = ArgumentHandleResult.UnknownArgument;
                 if (_argHandler.ContainsKey(k))
                 {
-                    r1 = _argHandler[k](v);
-                    _argResults[k] = r1;
+                    _argHandler[k](v);
                 }
-
-                r = CombineResults(r, r1);
             }
 
             foreach (var handler in _postProcessing)
             {
                 handler();
-            }
-
-            return r;
-        }
-
-        private static ArgumentHandleResult CombineResults(ArgumentHandleResult r1, ArgumentHandleResult r2)
-        {
-            if (r1 == ArgumentHandleResult.Handled && r2 == ArgumentHandleResult.Handled)
-            {
-                return ArgumentHandleResult.Handled;
-            }
-            else
-            {
-                return ArgumentHandleResult.Failed;
             }
         }
     }

@@ -29,26 +29,23 @@ namespace SmartConTests
 
         private bool _successHandlerInvoked = false;
 
-        private ArgumentHandleResult DummySuccessHandler(string value)
+        private void DummySuccessHandler(string value)
         {
             _successHandlerInvoked = true;
-            return ArgumentHandleResult.Handled;
         }
 
         private bool _failedHandlerInvoked = false;
 
-        private ArgumentHandleResult DummyFailedHandler(string value)
+        private void DummyFailedHandler(string value)
         {
             _failedHandlerInvoked = true;
-            return ArgumentHandleResult.Failed;
         }
 
         private bool _postprocessHandlerInvoked = false;
 
-        private ArgumentHandleResult DummyPostpocessHandler()
+        private void DummyPostpocessHandler()
         {
             _postprocessHandlerInvoked = true;
-            return ArgumentHandleResult.Handled;
         }
 
         [TestMethod]
@@ -107,7 +104,7 @@ namespace SmartConTests
             _successHandlerInvoked = false;
             var unitUnderTest = this.CreateArgumentProcessor();
             string key = "h";
-            ProcessHandler handler = DummyPostpocessHandler;
+            PostProcessHandler handler = DummyPostpocessHandler;
             _successHandlerInvoked = false;
 
             // Act

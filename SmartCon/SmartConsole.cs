@@ -9,7 +9,6 @@
         private TextIndent _indent;
         private TextWriter _writer = Console.Out;
         private TextReader _reader = Console.In;
-        //private SmartConsole _error = new SmartConsole(Console.Error, SmartConsoleOptions.DefaultOptions, TextIndent.DefaultIndent);
 
         public SmartConsole()
         {
@@ -44,12 +43,6 @@
         {
             _indent = indent;
         }
-
-        //public SmartConsole Error
-        //{
-        //    get { return _error; }
-        //    private set { throw new NotSupportedException(); }
-        //}
 
         public void WriteLine(string format, params object[] arg)
         {

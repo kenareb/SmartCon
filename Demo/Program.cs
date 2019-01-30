@@ -17,13 +17,13 @@
         {
             var handler = new ArgumentProcessor();
 
-            handler.RegisterArgument("h", (v) => { GetHelp(); return ArgumentHandleResult.Handled; });
+            handler.RegisterArgument("h", (v) => GetHelp());
             handler.RegisterArgument("f", (v) => SetFilename(v));
             handler.RegisterPostProcessor(DoWork);
             handler.Process(args);
         }
 
-        private static ArgumentHandleResult DoWork()
+        private static void DoWork()
         {
             _console.Options.IncreaseIndent();
             if (File.Exists(_file))
@@ -34,9 +34,6 @@
             {
                 _console.WriteLine("File does not exist.");
             }
-
-            _console.ReadLine();
-            return ArgumentHandleResult.Handled;
         }
 
         private static void GetHelp()
@@ -45,11 +42,10 @@
             Environment.Exit(0);
         }
 
-        private static ArgumentHandleResult SetFilename(string filename)
+        private static void SetFilename(string filename)
         {
             _file = Path.Combine(Environment.CurrentDirectory, filename);
             _console.WriteLine(_file);
-            return ArgumentHandleResult.Handled;
         }
     }
 }
