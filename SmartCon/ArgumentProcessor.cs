@@ -39,33 +39,22 @@
 
         public void Process(string[] args)
         {
-            foreach (var a in args)
-            {
-                var parts = a.Split(new[] { CommandLineDescription.KeyValueSeparator }, 2);
-
-                var k = parts.Count() > 0
-                    ? parts[0]
-                    : string.Empty;
-
-                var v = parts.Count() > 1
-                    ? parts[1]
-                    : string.Empty;
-
-                if (k.StartsWith(CommandLineDescription.KeyPrefix.ToString()))
-                {
-                    k = k.Substring(1);
-                }
-
-                if (_argHandler.ContainsKey(k))
-                {
-                    _argHandler[k](v);
-                }
-            }
+            var strategy = GetStrategy();
+            strategy.Process(args, CommandLineDescription, _argHandler);
 
             foreach (var handler in _postProcessing)
             {
                 handler();
             }
+        }
+
+        private ProcessingStrategy GetStrategy()
+        {
+            ProcessingStrategy strategy = CommandLineDescription.KeyValueSeparator == " "
+                ? new WithoutSeparator() as ProcessingStrategy
+                : new WithSeparator() as ProcessingStrategy;
+
+            return strategy;
         }
     }
 }

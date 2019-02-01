@@ -23,7 +23,7 @@
         /// <remarks>
         /// The default setting is "=".
         /// </remarks>
-        public char KeyValueSeparator { get; set; }
+        public string KeyValueSeparator { get; set; }
 
         /// <summary>
         /// Describes the prefix before the commandline key.
@@ -41,18 +41,19 @@
         /// <remarks>
         /// The default setting is "-".
         /// </remarks>
-        public char KeyPrefix { get; set; }
+        public string KeyPrefix { get; set; }
 
         public static CommandLineDescription DefaultCommandLine = new CommandLineDescription();
-        public static CommandLineDescription LinStyle = new CommandLineDescription('-', '=');
-        public static CommandLineDescription DotNetStyle = new CommandLineDescription('-', ':');
-        public static CommandLineDescription CmdStyle = new CommandLineDescription('/', '=');
+        public static CommandLineDescription LinStyle = new CommandLineDescription("-", "=");
+        public static CommandLineDescription GnuStyle = new CommandLineDescription("--", "=");
+        public static CommandLineDescription DotNetStyle = new CommandLineDescription("-", ":");
+        public static CommandLineDescription CmdStyle = new CommandLineDescription("/", " ");
 
         public CommandLineDescription()
-            : this('-', '=')
+            : this("-", "=")
         { }
 
-        public CommandLineDescription(char prefix, char separator)
+        public CommandLineDescription(string prefix, string separator)
         {
             KeyPrefix = prefix;
             KeyValueSeparator = separator;

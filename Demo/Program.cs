@@ -16,6 +16,8 @@
         private static void Main(string[] args)
         {
             var handler = new ArgumentProcessor();
+            // handler.CommandLineDescription = CommandLineDescription.DotNetStyle; // Demo -f=Demo.exe
+            // handler.CommandLineDescription = CommandLineDescription.CmdStyle; // Demo /f Demo.exe
 
             handler.RegisterArgument("h", (v) => GetHelp());
             handler.RegisterArgument("f", (v) => SetFilename(v));

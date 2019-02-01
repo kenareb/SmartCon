@@ -41,6 +41,17 @@ namespace SmartConTests
             _failedHandlerInvoked = true;
         }
 
+        private int _cmdHandlerCounter = 0;
+        private bool _cmdHandlerInvoked = false;
+        private string _cmdHandlerArg = string.Empty;
+
+        private void DummyCmdStyleHandler(string value)
+        {
+            _cmdHandlerCounter++;
+            _cmdHandlerArg = value;
+            _cmdHandlerInvoked = true;
+        }
+
         private bool _postprocessHandlerInvoked = false;
 
         private void DummyPostpocessHandler()
@@ -114,6 +125,56 @@ namespace SmartConTests
 
             // Assert
             Assert.IsTrue(_postprocessHandlerInvoked);
+        }
+
+        [TestMethod]
+        public void Processor_Must_Call_CmdStyle()
+        {
+            // Arrange
+            _cmdHandlerInvoked = false;
+            var unitUnderTest = this.CreateArgumentProcessor();
+            unitUnderTest.CommandLineDescription = CommandLineDescription.CmdStyle;
+
+            string key = "f";
+            ArgumentHandler handler = DummyCmdStyleHandler;
+            _successHandlerInvoked = false;
+
+            _cmdHandlerCounter = 0;
+
+            // Act
+            unitUnderTest.RegisterArgument(key, handler);
+
+            unitUnderTest.Process(new[] { "/f", "myFile" });
+
+            // Assert
+            Assert.IsTrue(_cmdHandlerInvoked);
+            Assert.AreEqual(1, _cmdHandlerCounter);
+            Assert.AreEqual("myFile", _cmdHandlerArg);
+        }
+
+        [TestMethod]
+        public void Processor_Must_Call_CmdStyle_Without_Param()
+        {
+            // Arrange
+            _cmdHandlerInvoked = false;
+            var unitUnderTest = this.CreateArgumentProcessor();
+            unitUnderTest.CommandLineDescription = CommandLineDescription.CmdStyle;
+
+            string key = "f";
+            ArgumentHandler handler = DummyCmdStyleHandler;
+            _successHandlerInvoked = false;
+
+            _cmdHandlerCounter = 0;
+
+            // Act
+            unitUnderTest.RegisterArgument(key, handler);
+
+            unitUnderTest.Process(new[] { "/f" });
+
+            // Assert
+            Assert.IsTrue(_cmdHandlerInvoked);
+            Assert.AreEqual(1, _cmdHandlerCounter);
+            Assert.AreEqual("", _cmdHandlerArg);
         }
     }
 }
