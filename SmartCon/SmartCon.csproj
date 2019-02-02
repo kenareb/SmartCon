@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright (C) 2019 Marcus Beranek</Copyright>
     <PackageProjectUrl>https://github.com/kenareb/SmartCon</PackageProjectUrl>
@@ -13,10 +13,8 @@
     <ApplicationIcon />
     <Win32Resource />
     <Description>SmartCon - A small collection of console tools for .NET</Description>
+    <NuspecFile>
+      SmartCon.1.0.0.nuspec
+    </NuspecFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="LICENSE" />
-  </ItemGroup>
-
 </Project>
