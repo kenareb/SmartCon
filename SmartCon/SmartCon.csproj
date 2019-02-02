@@ -12,6 +12,7 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <ApplicationIcon />
     <Win32Resource />
+    <Description>SmartCon - A small collection of console tools for .NET</Description>
   </PropertyGroup>
 
   <ItemGroup>
