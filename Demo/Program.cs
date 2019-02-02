@@ -27,6 +27,7 @@
 
         private static void DoWork()
         {
+            _console.WriteLine("Info:");
             _console.Options.IncreaseIndent();
             if (File.Exists(_file))
             {
@@ -36,11 +37,24 @@
             {
                 _console.WriteLine("File does not exist.");
             }
+            _console.Options.DecreaseIndent();
         }
 
         private static void GetHelp()
         {
-            _console.WriteLine("Usage: Demo.exe [-h] -f=<filename>");
+            var help = @"
+Usage: Demo.exe [-h] -f=<filename>
+
+-h
+    Shows this help page.
+
+-f=<filename>
+    Looks for the given file
+";
+
+            _console.Options.IncreaseIndent();
+            _console.WriteLine(help);
+
             Environment.Exit(0);
         }
 

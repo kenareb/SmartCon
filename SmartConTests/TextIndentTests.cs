@@ -27,10 +27,14 @@ namespace SmartConTests
             return new TextIndent();
         }
 
-        private TextIndent CreateTextIndent(string prefix)
+        private TextIndent CreateTextIndent(string prefix, int level)
         {
             var options = new SmartConsoleOptions();
             options.IndentationText = prefix;
+            while (options.IndentationLevel < level)
+            {
+                options.IncreaseIndent();
+            }
             return new TextIndent(options);
         }
 
@@ -40,21 +44,30 @@ namespace SmartConTests
             // Arrange
             var unitUnderTest = TextIndent.DefaultIndent;
 
-            string input = "Sample line";
-            string expected = "    Sample line";
+            var input = "Sample line";
+            var expected01 = "Sample line";
+            var expected02 = "    Sample line";
 
             // Act
-            var result = unitUnderTest.IndentInput(input);
+            var result01 = unitUnderTest.IndentInput(input);
 
             // Assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected01, result01);
+
+            unitUnderTest.IncreaseIndentationLevel();
+
+            // Act
+            var result02 = unitUnderTest.IndentInput(input);
+
+            // Assert
+            Assert.AreEqual(expected02, result02);
         }
 
         [TestMethod]
         public void IndentInput_Must_Prefix_With_Space()
         {
             // Arrange
-            var unitUnderTest = this.CreateTextIndent("  ");
+            var unitUnderTest = this.CreateTextIndent("  ", 1);
 
             string input = "Sample line";
             string expected = "  Sample line";
@@ -70,7 +83,7 @@ namespace SmartConTests
         public void IndentInput_Must_Prefix_With_Dots()
         {
             // Arrange
-            var unitUnderTest = this.CreateTextIndent("..");
+            var unitUnderTest = this.CreateTextIndent("..", 1);
 
             string input = "Sample line";
             string expected = "..Sample line";
@@ -86,7 +99,7 @@ namespace SmartConTests
         public void IndentInput_Must_Prefix_With_Multiple_Lines()
         {
             // Arrange
-            var unitUnderTest = this.CreateTextIndent("..");
+            var unitUnderTest = this.CreateTextIndent("..", 1);
 
             string input = "Sample line\r\nSecond line";
             string expected = "..Sample line\r\n..Second line";
@@ -102,7 +115,7 @@ namespace SmartConTests
         public void IndentInput_Must_Prefix_With_Different_Levels()
         {
             // Arrange
-            var unitUnderTest = this.CreateTextIndent("..");
+            var unitUnderTest = this.CreateTextIndent("..", 1);
 
             string input = "Sample line";
             string expected1 = "..Sample line";

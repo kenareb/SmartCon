@@ -33,7 +33,7 @@
             var indent = String.Empty;
             var builder = new System.Text.StringBuilder();
             builder.Append(indent);
-            for (var i = 0; i <= _options.IndentationLevel; i++)
+            for (var i = 0; i < _options.IndentationLevel; i++)
             {
                 builder.Append(_options.IndentationText);
             }

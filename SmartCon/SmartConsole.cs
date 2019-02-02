@@ -44,6 +44,11 @@
             _indent = indent;
         }
 
+        public void WriteLine()
+        {
+            _writer.WriteLine();
+        }
+
         public void WriteLine(string format, params object[] arg)
         {
             if (_options.IndentationLevel > 0)
