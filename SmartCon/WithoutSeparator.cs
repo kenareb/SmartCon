@@ -4,8 +4,18 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// The <c>WithoutSeparator</c> class is a <c>ProcessingStrategy</c> for
+    /// interpreting commandline styles without a separator.
+    /// </summary>
     public class WithoutSeparator : ProcessingStrategy
     {
+        /// <summary>
+        /// Processes the arguments.
+        /// </summary>
+        /// <param name="args">The commandline arguments.</param>
+        /// <param name="desc">The commandline description.</param>
+        /// <param name="handlers">The registered handlers.</param>
         public override void Process(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers)
         {
             var argsleft = true;
