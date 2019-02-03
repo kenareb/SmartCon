@@ -3,8 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
+    /// <summary>
+    /// The <c>WithSeparator</c> class is a <c>ProcessingStrategy</c> for
+    /// interpreting commandline styles containing a separator.
+    /// </summary>
     public class WithSeparator : ProcessingStrategy
     {
+        /// <summary>
+        /// Processes the arguments.
+        /// </summary>
+        /// <param name="args">The commandline arguments.</param>
+        /// <param name="desc">The commandline description.</param>
+        /// <param name="handlers">The registered handlers.</param>
         public override void Process(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers)
         {
             foreach (var a in args)
