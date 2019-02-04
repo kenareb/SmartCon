@@ -16,6 +16,17 @@
         /// <param name="args">The commandline arguments.</param>
         /// <param name="desc">The <c>CommandLineDescription</c>.</param>
         /// <param name="handlers">The registered handlers.</param>
-        public abstract void Process(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers);
+        public void Process(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers)
+        {
+            CallHandlers(args, desc, handlers);
+        }
+
+        /// <summary>
+        /// Calls the handlers according to the <c>CommandLineDescription</c>. Must be implemented by inherting classes.
+        /// </summary>
+        /// <param name="args">The commandline arguments.</param>
+        /// <param name="desc">The <c>CommandLineDescription</c>.</param>
+        /// <param name="handlers">The registered handlers.</param>
+        protected abstract void CallHandlers(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers);
     }
 }

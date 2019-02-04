@@ -8,7 +8,7 @@
     /// The <c>WithoutSeparator</c> class is a <c>ProcessingStrategy</c> for
     /// interpreting commandline styles without a separator.
     /// </summary>
-    public class WithoutSeparator : ProcessingStrategy
+    public sealed class WithoutSeparator : ProcessingStrategy
     {
         /// <summary>
         /// Processes the arguments.
@@ -16,7 +16,7 @@
         /// <param name="args">The commandline arguments.</param>
         /// <param name="desc">The commandline description.</param>
         /// <param name="handlers">The registered handlers.</param>
-        public override void Process(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers)
+        protected override void CallHandlers(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers)
         {
             var argsleft = true;
             var i = 0;
