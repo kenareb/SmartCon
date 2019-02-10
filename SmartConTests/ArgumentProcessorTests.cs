@@ -1,10 +1,10 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using SmartCon;
-using System;
-
 namespace SmartConTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using SmartCon;
+    using System;
+
     [TestClass]
     public class ArgumentProcessorTests
     {
