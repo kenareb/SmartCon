@@ -7,24 +7,10 @@
     using System.Text;
 
     /// <summary>
-    /// Delegate definition of a handler, which takes a commandline argument.
-    /// </summary>
-    /// <param name="value">The specified value given via the commandline.</param>
-    /// <remarks>
-    /// For a commandline like "-f=filename", the value is "filename".
-    /// </remarks>
-    public delegate void ArgumentHandler(string value);
-
-    /// <summary>
-    /// Delegate definition of the post processor.
-    /// </summary>
-    public delegate void PostProcessHandler();
-
-    /// <summary>
     /// The <c>ArgumentProcessor</c> class is responsible for processing and interpretation of the
     /// commandline arguments.
     /// </summary>
-    public class ArgumentProcessor
+    public class ArgumentProcessor : IArgumentProcessor
     {
         /// <summary>
         /// The <c>_argHandler</c> field contains the mapping of the
@@ -106,7 +92,7 @@
         /// depending on the current <c>CommandLineDescription</c>
         /// </summary>
         /// <returns>A <c>ProcessingStrategy</c>.</returns>
-        private ProcessingStrategy GetStrategy()
+        protected virtual ProcessingStrategy GetStrategy()
         {
             ProcessingStrategy strategy = CommandLineDescription.KeyValueSeparator == " "
                 ? new WithoutSeparator() as ProcessingStrategy
