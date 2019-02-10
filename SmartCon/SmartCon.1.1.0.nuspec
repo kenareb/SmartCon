@@ -14,6 +14,10 @@
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>
+    <tags>Console Commandline Arguments stdin stdout cin cout cmd shell library</tags>
+    <releaseNotes>
+      Added support for npm like commandlines, for example "npm adduser --registry=blafoo". Added more strategies for command line processing. Code clean-up and refactoring.
+    </releaseNotes>
   </metadata>
   <files>
     <file src="bin\Release\netstandard2.0\SmartCon.dll" target="lib\netstandard2.0\SmartCon.dll" />
