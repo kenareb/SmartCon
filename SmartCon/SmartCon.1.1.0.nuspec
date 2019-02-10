@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SmartCon</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <authors>Marcus Beranek / SmartCon</authors>
     <owners>Marcus Beranek / SmartCon</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectUrl>https://github.com/kenareb/SmartCon</projectUrl>
-    <description>SmartCon - A small collection of console tools for .NET</description>
+    <description>SmartCon is a small collection of console tools for .NET. Offers processing of commandline arguments with different flavours of commandline switches.</description>
     <copyright>Copyright (C) 2019 Marcus Beranek</copyright>
     <repository type="git" url="https://github.com/kenareb/SmartCon.git" />
     <license type="file">LICENSE.txt</license>
