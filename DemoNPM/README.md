@@ -1,4 +1,6 @@
-# MPM-Style command lines
+# npm style command line
+
+This example project shows, how to implement an npm like command line processing.
 
 ````C#
 using SmartCon;
