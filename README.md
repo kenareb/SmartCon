@@ -91,7 +91,7 @@ handler.CommandLineDescription = CommandLineDescription.GnuStyle;
 ```
 
 
-#### NPM-Stype
+#### NPM-Style
 SmartCon can also be set up to understand a command line style like npm. For example "npm adduser --registry=url" or "npm install package1 package2".
 
 For a complete example see https://github.com/kenareb/SmartCon/tree/master/DemoNPM
