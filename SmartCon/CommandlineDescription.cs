@@ -43,6 +43,10 @@
         /// </remarks>
         public string KeyPrefix { get; set; }
 
+        public bool MatchSubstringIfPossible { get; set; }
+
+        public bool CaseSensitive { get; set; }
+
         /// <summary>
         /// The Default commandline style "-f=filename"
         /// </summary>
@@ -84,6 +88,21 @@
         {
             KeyPrefix = prefix;
             KeyValueSeparator = separator;
+            MatchSubstringIfPossible = false;
+            CaseSensitive = true;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <c>CommandLineDescription</c> class.
+        /// </summary>
+        /// <param name="prefix">The prefix used to identify commandline argument keys.</param>
+        /// <param name="separator">The separator used to split key and value in a commandline argument.</param>
+        public CommandLineDescription(string prefix, string separator, bool matchSubstring, bool matchCaseSensitive)
+        {
+            KeyPrefix = prefix;
+            KeyValueSeparator = separator;
+            MatchSubstringIfPossible = matchSubstring;
+            CaseSensitive = matchCaseSensitive;
         }
     }
 }
