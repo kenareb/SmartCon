@@ -47,12 +47,12 @@ namespace SmartConTests
 
         private SubKeyFinder CreateSubKeyFinderCS()
         {
-            return new SubKeyFinder(mockDictionary, true);
+            return new SubKeyFinder(true);
         }
 
         private SubKeyFinder CreateSubKeyFinderCI()
         {
-            return new SubKeyFinder(mockDictionary, false);
+            return new SubKeyFinder(false);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace SmartConTests
             var unitUnderTest = CreateSubKeyFinderCS();
 
             // Act
-            var actual = unitUnderTest.Find("h");
+            var actual = unitUnderTest.Find(mockDictionary, "h");
 
             // Assert
             Assert.AreEqual(mockHelp.Object, actual);
@@ -77,7 +77,7 @@ namespace SmartConTests
             var unitUnderTest = CreateSubKeyFinderCS();
 
             // Act
-            var actual = unitUnderTest.Find("h");
+            var actual = unitUnderTest.Find(mockDictionary, "h");
 
             // Assert
             Assert.IsNull(actual);
@@ -91,8 +91,8 @@ namespace SmartConTests
             var unitUnderTest = CreateSubKeyFinderCI();
 
             // Act
-            var actual01 = unitUnderTest.Find("HELP");
-            var actual02 = unitUnderTest.Find("H");
+            var actual01 = unitUnderTest.Find(mockDictionary, "HELP");
+            var actual02 = unitUnderTest.Find(mockDictionary, "H");
 
             // Assert
             Assert.AreEqual(mockHelp.Object, actual01);

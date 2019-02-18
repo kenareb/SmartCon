@@ -8,31 +8,26 @@
     public class ArgumentHandlerFinder
     {
         private bool _caseSensitive = true;
-        protected IDictionary<string, ArgumentHandler> ArgHandles { get; set; } = new ConcurrentDictionary<string, ArgumentHandler>();
 
-        public ArgumentHandlerFinder(IDictionary<string, ArgumentHandler> handlers, bool casSensitive)
+        public ArgumentHandlerFinder(bool caseSensitive)
         {
-            _caseSensitive = casSensitive;
-            foreach (var h in handlers)
-            {
-                ArgHandles[_caseSensitive ? h.Key : h.Key.ToLower()] = h.Value;
-            }
+            _caseSensitive = caseSensitive;
         }
 
-        public ArgumentHandler Find(string key)
+        public ArgumentHandler Find(IDictionary<string, ArgumentHandler> handlers, string key)
         {
-            return FindHandler(key);
+            return FindHandler(handlers, key);
         }
 
-        protected virtual ArgumentHandler FindHandler(string key)
+        protected virtual ArgumentHandler FindHandler(IDictionary<string, ArgumentHandler> handlers, string key)
         {
             ArgumentHandler h = null;
 
             var myKey = _caseSensitive ? key : key.ToLower();
 
-            if (ArgHandles.ContainsKey(myKey))
+            if (handlers.ContainsKey(myKey))
             {
-                h = ArgHandles[myKey];
+                h = handlers[myKey];
             }
 
             return h;
