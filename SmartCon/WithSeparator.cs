@@ -35,10 +35,9 @@
                     k = k.Substring(desc.KeyPrefix.Length);
                 }
 
-                if (handlers.ContainsKey(k))
-                {
-                    handlers[k](v);
-                }
+                var finder = GetFinder(desc);
+                var h = finder.Find(handlers, k);
+                if (h != null) { h(v); }
             }
         }
     }

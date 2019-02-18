@@ -10,6 +10,8 @@
     /// </summary>
     public abstract class ProcessingStrategy
     {
+        private ArgumentHandlerFinder _finder;
+
         /// <summary>
         /// Processes the given commandline arguments.
         /// </summary>
@@ -28,5 +30,17 @@
         /// <param name="desc">The <c>CommandLineDescription</c>.</param>
         /// <param name="handlers">The registered handlers.</param>
         protected abstract void CallHandlers(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers);
+
+        protected virtual ArgumentHandlerFinder GetFinder(CommandLineDescription desc)
+        {
+            if (_finder == null)
+            {
+                _finder = desc.MatchSubstringIfPossible
+                    ? (ArgumentHandlerFinder)new SubKeyFinder(desc.CaseSensitive)
+                    : new ArgumentHandlerFinder(desc.CaseSensitive);
+            }
+
+            return _finder;
+        }
     }
 }
