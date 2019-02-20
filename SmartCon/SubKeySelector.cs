@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SmartCon
+﻿namespace SmartCon
 {
-    public class SubKeyFinder : ArgumentHandlerFinder
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    public class SubKeySelector : DelegateSelector
     {
         private bool _caseSensitive;
 
-        public SubKeyFinder(bool caseSensitiv) : base(caseSensitiv)
+        public SubKeySelector(bool caseSensitiv) : base(caseSensitiv)
         {
             _caseSensitive = caseSensitiv;
         }

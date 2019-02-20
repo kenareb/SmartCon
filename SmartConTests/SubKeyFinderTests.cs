@@ -45,14 +45,14 @@ namespace SmartConTests
             mockDictionary["output"] = mockOutput.Object;
         }
 
-        private SubKeyFinder CreateSubKeyFinderCS()
+        private SubKeySelector CreateSubKeyFinderCS()
         {
-            return new SubKeyFinder(true);
+            return new SubKeySelector(true);
         }
 
-        private SubKeyFinder CreateSubKeyFinderCI()
+        private SubKeySelector CreateSubKeyFinderCI()
         {
-            return new SubKeyFinder(false);
+            return new SubKeySelector(false);
         }
 
         [TestMethod]

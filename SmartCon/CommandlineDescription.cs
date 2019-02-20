@@ -43,8 +43,31 @@
         /// </remarks>
         public string KeyPrefix { get; set; }
 
+        /// <summary>
+        /// Defines wether or not a partial match of an argument will be handled.
+        /// </summary>
+        /// <para>
+        /// With <c>MatchSubstringIfPossible</c> set to <c>true</c> the following
+        /// two arguments will match the same <c>ArgumentHandler</c>, as long as
+        /// no duplicate matches exist.
+        /// </para>
+        /// <code>
+        /// copy -source=c:\temp
+        /// copy -s=c:\temp
+        /// </code>
         public bool MatchSubstringIfPossible { get; set; }
 
+        /// <summary>
+        /// Specifies wether or not the arguments a interpreted casesensitive.
+        /// </summary>
+        /// <para>
+        /// With <c>CaseSensitive</c> set to <c>true</c> the following
+        /// two arguments will match the same <c>ArgumentHandler</c>.
+        /// </para>
+        /// <code>
+        /// copy -S=c:\temp
+        /// copy -s=c:\temp
+        /// </code>
         public bool CaseSensitive { get; set; }
 
         /// <summary>
