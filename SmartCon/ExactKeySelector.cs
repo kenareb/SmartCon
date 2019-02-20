@@ -3,21 +3,20 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     /// <summary>
-    /// The <c>SubKeySelector</c> is responsible for selecting an <see cref="ArgumentHandler"/>.
-    /// The selector chooses the <c>ArgumentHandler</c> by matching a substring of the argument.
+    /// The <c>ExactKeySelector</c> is responsible for selecting an <see cref="ArgumentHandler"/>.
+    /// The selector chooses the <c>ArgumentHandler</c> by matching the exact argument.
     /// </summary>
-    public class SubKeySelector : DelegateSelector
+    public class ExactKeySelector : DelegateSelector
     {
         private bool _caseSensitive;
 
         /// <summary>
-        /// Initializes a new instance of the <c>SubKeySelector</c> class
+        /// Initializes a new instance of the <c>ExactKeySelector</c>.
         /// </summary>
         /// <param name="caseSensitive"><c>true</c> if choosing a delegate happens casesensitive; <c>false</c> otherwise.</param>
-        public SubKeySelector(bool caseSensitiv) : base(caseSensitiv)
+        public ExactKeySelector(bool caseSensitiv) : base(caseSensitiv)
         {
             _caseSensitive = caseSensitiv;
         }
@@ -33,23 +32,11 @@
         {
             ArgumentHandler h = null;
 
-            var lowerKey = key.ToLower();
+            var myKey = _caseSensitive ? key : key.ToLower();
 
-            if (handlers.ContainsKey(_caseSensitive ? key : lowerKey))
+            if (handlers.ContainsKey(myKey))
             {
-                h = handlers[_caseSensitive ? key : lowerKey];
-            }
-
-            if (h == null)
-            {
-                var possibleHandles = _caseSensitive
-                    ? handlers.Where(a => a.Key.StartsWith(key))
-                    : handlers.Where(a => a.Key.ToLower().StartsWith(key.ToLower()));
-
-                if (possibleHandles.Count() == 1)
-                {
-                    h = possibleHandles.First().Value;
-                }
+                h = handlers[myKey];
             }
 
             return h;

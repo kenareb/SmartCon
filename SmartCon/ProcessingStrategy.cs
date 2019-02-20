@@ -28,19 +28,5 @@
         /// <param name="desc">The <c>CommandLineDescription</c>.</param>
         /// <param name="handlers">The registered handlers.</param>
         protected abstract void CallHandlers(string[] args, CommandLineDescription desc, IDictionary<string, ArgumentHandler> handlers);
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="desc"></param>
-        /// <returns>A <c>DelegateSelector</c> depending on the specified <see cref="CommandLineDescription"/></returns>
-        protected virtual DelegateSelector GetSelector(CommandLineDescription desc)
-        {
-            var finder = desc.MatchSubstringIfPossible
-                    ? (DelegateSelector)new SubKeySelector(desc.CaseSensitive)
-                    : new ExactKeySelector(desc.CaseSensitive);
-
-            return finder;
-        }
     }
 }

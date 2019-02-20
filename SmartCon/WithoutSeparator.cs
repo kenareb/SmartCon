@@ -10,20 +10,7 @@
     /// </summary>
     public sealed class WithoutSeparator : ProcessingStrategy
     {
-        private Dictionary<CommandLineDescription, DelegateSelector> _selectors = new Dictionary<CommandLineDescription, DelegateSelector>();
-
-        private DelegateSelector GetCachedSelector(CommandLineDescription desc)
-        {
-            DelegateSelector finder;
-            if (!_selectors.ContainsKey(desc))
-            {
-                finder = GetSelector(desc);
-                _selectors[desc] = finder;
-            }
-
-            finder = _selectors[desc];
-            return finder;
-        }
+        private DelegateSelectorCache _cache = new DelegateSelectorCache();
 
         /// <summary>
         /// Processes the arguments.
@@ -65,7 +52,7 @@
                         i++;
                     }
 
-                    var finder = GetCachedSelector(desc);
+                    var finder = _cache.GetCachedSelector(desc);
                     var h = finder.Find(handlers, k);
                     if (h != null) { h(v); }
                 }
