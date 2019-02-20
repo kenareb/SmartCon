@@ -33,10 +33,10 @@
         }
 
         /// <summary>
-        ///
+        /// Creates a <c>DelegateSelector</c> for the specified <see cref="CommandLineDescription"/>.
         /// </summary>
-        /// <param name="desc"></param>
-        /// <returns>A <c>DelegateSelector</c> depending on the specified <see cref="CommandLineDescription"/></returns>
+        /// <param name="desc">The specific <c>CommandLineDescription</c> used to identitfy the <c>DelegateSelector</c>.</param>
+        /// <returns>A <c>DelegateSelector</c> depending on the specified <see cref="CommandLineDescription"/>.returns>
         public static DelegateSelector GetSelector(CommandLineDescription desc)
         {
             var finder = desc.MatchSubstringIfPossible
