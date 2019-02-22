@@ -32,12 +32,9 @@
         {
             ArgumentHandler h = null;
 
-            var myKey = _caseSensitive ? key : key.ToLower();
-
-            if (handlers.ContainsKey(myKey))
-            {
-                h = handlers[myKey];
-            }
+            var found = _caseSensitive
+                ? handlers.TryGetValue(key, out h)
+                : handlers.TryGetValueCI(key, out h);
 
             return h;
         }

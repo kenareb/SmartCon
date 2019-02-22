@@ -21,15 +21,15 @@
         /// <returns>A <c>DelegateSelector</c>.</returns>
         public DelegateSelector GetCachedSelector(CommandLineDescription desc)
         {
-            DelegateSelector finder;
+            DelegateSelector selector;
             if (!_selectors.ContainsKey(desc))
             {
-                finder = GetSelector(desc);
-                _selectors[desc] = finder;
+                selector = GetSelector(desc);
+                _selectors[desc] = selector;
             }
 
-            finder = _selectors[desc];
-            return finder;
+            selector = _selectors[desc];
+            return selector;
         }
 
         /// <summary>
@@ -39,11 +39,11 @@
         /// <returns>A <c>DelegateSelector</c> depending on the specified <see cref="CommandLineDescription"/>.returns>
         public static DelegateSelector GetSelector(CommandLineDescription desc)
         {
-            var finder = desc.MatchSubstringIfPossible
+            var selector = desc.MatchSubstringIfPossible
                     ? (DelegateSelector)new SubKeySelector(desc.CaseSensitive)
                     : new ExactKeySelector(desc.CaseSensitive);
 
-            return finder;
+            return selector;
         }
     }
 }

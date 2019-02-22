@@ -35,6 +35,14 @@ namespace SmartConTests
             mockDictionary["output"] = mockOutput.Object;
         }
 
+        private void SetupDictWithoutCollisionUpper()
+        {
+            mockDictionary = new Dictionary<string, ArgumentHandler>();
+            mockDictionary["HELP"] = mockHelp.Object;
+            mockDictionary["FILE"] = mockFile.Object;
+            mockDictionary["OUTPUT"] = mockOutput.Object;
+        }
+
         private void SetupDictWithCollision()
         {
             mockDictionary = new Dictionary<string, ArgumentHandler>();
@@ -89,6 +97,22 @@ namespace SmartConTests
             // Arrange
             SetupDictWithoutCollision();
             var unitUnderTest = CreateSubKeyFinderCI();
+
+            // Act
+            var actual01 = unitUnderTest.Find(mockDictionary, "HELP");
+            var actual02 = unitUnderTest.Find(mockDictionary, "H");
+
+            // Assert
+            Assert.AreEqual(mockHelp.Object, actual01);
+            Assert.AreEqual(mockHelp.Object, actual02);
+        }
+
+        [TestMethod]
+        public void Must_Find_Help_For_HELP_CS()
+        {
+            // Arrange
+            SetupDictWithoutCollisionUpper();
+            var unitUnderTest = CreateSubKeyFinderCS();
 
             // Act
             var actual01 = unitUnderTest.Find(mockDictionary, "HELP");

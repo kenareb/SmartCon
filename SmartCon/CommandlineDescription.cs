@@ -73,7 +73,7 @@
         /// <summary>
         /// The Default commandline style "-f=filename"
         /// </summary>
-        public static CommandLineDescription DefaultCommandLine = new CommandLineDescription();
+        public static CommandLineDescription DefaultCommandLine = new CommandLineDescription("-", "=");
 
         /// <summary>
         /// Linux commandline style, same as <c>DefaultCommandLine</c>.

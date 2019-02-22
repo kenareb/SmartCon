@@ -33,23 +33,13 @@
         {
             ArgumentHandler h = null;
 
-            var lowerKey = key.ToLower();
+            var possibleHandles = _caseSensitive
+                ? handlers.Where(a => a.Key.StartsWith(key))
+                : handlers.Where(a => a.Key.ToLower().StartsWith(key.ToLower()));
 
-            if (handlers.ContainsKey(_caseSensitive ? key : lowerKey))
+            if (possibleHandles.Count() == 1)
             {
-                h = handlers[_caseSensitive ? key : lowerKey];
-            }
-
-            if (h == null)
-            {
-                var possibleHandles = _caseSensitive
-                    ? handlers.Where(a => a.Key.StartsWith(key))
-                    : handlers.Where(a => a.Key.ToLower().StartsWith(key.ToLower()));
-
-                if (possibleHandles.Count() == 1)
-                {
-                    h = possibleHandles.First().Value;
-                }
+                h = possibleHandles.First().Value;
             }
 
             return h;
