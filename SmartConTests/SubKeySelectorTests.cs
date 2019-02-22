@@ -6,7 +6,7 @@ namespace SmartConTests
     using System.Collections.Generic;
 
     [TestClass]
-    public class SubKeyFinderTests
+    public class SubKeySelectorTests
     {
         private MockRepository mockRepository;
         private Mock<ArgumentHandler> mockHelp;

@@ -8,7 +8,7 @@
     /// <summary>
     /// Extension methods for string dictionaries.
     /// </summary>
-    public static class DictionaryExtension
+    public static class IDictionaryExtension
     {
         /// <summary>
         /// Checks wether or not the dictionary contains the specified key, case insensitive.
