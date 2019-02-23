@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Strategies
 {
     using System;
     using System.Collections.Concurrent;
@@ -15,7 +15,7 @@
         /// <summary>
         /// The <c>CommandStrategy</c> is used here.
         /// </summary>
-        private CommandStrategy _strat = new CommandStrategy();
+        private IProcessingStrategy _strat = new CommandStrategy();
 
         /// <summary>
         /// Registers a command.
@@ -24,14 +24,18 @@
         /// <param name="processor">The <c>ArgumentProcessor</c> handling the arguments passed to the command.</param>
         public void RegisterCommand(string commandName, IArgumentProcessor processor)
         {
-            _strat.RegisterCommand(commandName, processor);
+            var reg = _strat as ICommandRegistry;
+            if (reg != null)
+            {
+                reg.RegisterCommand(commandName, processor);
+            }
         }
 
         /// <summary>
         /// Gets the processing strategy.
         /// </summary>
         /// <returns>The processing strategy to be used.</returns>
-        protected override ProcessingStrategy GetStrategy()
+        protected override IProcessingStrategy GetStrategy()
         {
             return _strat;
         }

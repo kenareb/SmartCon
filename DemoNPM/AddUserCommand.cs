@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using SmartCon;
-
-namespace DemoNPM
+﻿namespace DemoNPM
 {
+    using System;
+    using System.Linq;
+    using SmartCon;
+
     /// <summary>
     /// The <c>AddUserCommand</c> class provides a command line processor
     /// for the following command: adduser --registry=xyz

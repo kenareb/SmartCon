@@ -1,3 +1,5 @@
+using SmartCon.Strategies;
+
 namespace SmartConTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;

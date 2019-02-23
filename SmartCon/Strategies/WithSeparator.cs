@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Strategies
 {
     using System;
     using System.Collections.Generic;

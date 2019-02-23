@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Strategies
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     /// The <c>DelegateSelector</c> is responsible for choosing the delegate to handle
     /// a specific argument.
     /// </summary>
-    public abstract class DelegateSelector
+    public abstract class DelegateSelector : IDelegateSelector
     {
         /// <summary>
         /// Determines, if the chooser is casesensitive or not.
@@ -30,9 +30,7 @@
         /// <param name="key">The specific key to handle.</param>
         /// <returns>The found <c>ArgumentHandler</c></returns>
         public ArgumentHandler Find(IDictionary<string, ArgumentHandler> handlers, string key)
-        {
-            return FindHandler(handlers, key);
-        }
+            => FindHandler(handlers, key);
 
         /// <summary>
         /// Finds the handler repsonsible for the specified key.

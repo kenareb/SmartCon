@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Extensions
 {
     using System;
     using System.Collections.Generic;

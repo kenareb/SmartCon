@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Help
 {
     using System;
     using System.Collections.Concurrent;

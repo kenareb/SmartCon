@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Collections.Concurrent;
-    using SmartCon;
+    using SmartCon.Strategies;
 
     public class Program
     {

@@ -1,8 +1,9 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Strategies
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using SmartCon.Extensions;
 
     /// <summary>
     /// The <c>ExactKeySelector</c> is responsible for selecting an <see cref="ArgumentHandler"/>.
