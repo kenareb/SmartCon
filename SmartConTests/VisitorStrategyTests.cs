@@ -1,11 +1,10 @@
-using SmartCon.Strategies;
-
 namespace SmartConTests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using SmartCon;
     using System.Collections.Generic;
+    using SmartCon.Strategies;
 
     [TestClass]
     public class VisitorStrategyTests
