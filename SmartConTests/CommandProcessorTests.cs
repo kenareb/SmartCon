@@ -5,6 +5,7 @@ namespace SmartConTests
     using SmartCon;
     using System;
     using System.Linq;
+    using SmartCon.Strategies;
 
     [TestClass]
     public class CommandProcessorTests

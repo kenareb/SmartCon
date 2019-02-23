@@ -1,9 +1,10 @@
-﻿using System;
-using System.Linq;
-using SmartCon;
-
-namespace DemoNPM
+﻿namespace DemoNPM
 {
+    using System;
+    using System.Linq;
+    using SmartCon;
+    using SmartCon.Strategies;
+
     /// <summary>
     /// The <c>InstallCommand</c> provides a command line processor
     /// for the folowing command: install package1 package2 package3 ...
@@ -16,7 +17,7 @@ namespace DemoNPM
             this.RegisterArgument("*", (v) => InstallPackage(v));
         }
 
-        protected override ProcessingStrategy GetStrategy()
+        protected override IProcessingStrategy GetStrategy()
         {
             return new VisitorStrategy();
         }
