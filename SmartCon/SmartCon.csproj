@@ -17,7 +17,7 @@
       SmartCon.1.0.0.nuspec
     </NuspecFile>
     <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <FileVersion>1.2.0.0</FileVersion>
     <Version>1.2.0</Version>
   </PropertyGroup>
 </Project>
