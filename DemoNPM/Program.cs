@@ -1,10 +1,11 @@
-﻿namespace DemoNPM
+﻿using SmartCon;
+
+namespace DemoNPM
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Collections.Concurrent;
-    using SmartCon.Strategies;
 
     public class Program
     {

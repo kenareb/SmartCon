@@ -1,9 +1,10 @@
-﻿namespace SmartCon.Strategies
+﻿namespace SmartCon
 {
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using SmartCon.Strategies;
 
     /// <summary>
     /// The <c>CommandProcessor</c> is an <see cref="ArgumentProcessor"/> handling commands.
