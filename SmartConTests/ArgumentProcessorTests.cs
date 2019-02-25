@@ -113,14 +113,12 @@ namespace SmartConTests
         {
             // Arrange
             _successHandlerInvoked = false;
-            var unitUnderTest = this.CreateArgumentProcessor();
-            string key = "h";
-            PostProcessHandler handler = DummyPostpocessHandler;
             _successHandlerInvoked = false;
-
-            // Act
+            var unitUnderTest = this.CreateArgumentProcessor();
+            PostProcessHandler handler = DummyPostpocessHandler;
             unitUnderTest.RegisterPostProcessor(handler);
 
+            // Act
             unitUnderTest.Process(new[] { "-h" });
 
             // Assert
