@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Strategies
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +10,8 @@
     /// </summary>
     public sealed class WithSeparator : ProcessingStrategy
     {
+        private DelegateSelectorCache _cache = new DelegateSelectorCache();
+
         /// <summary>
         /// Processes the arguments.
         /// </summary>
@@ -35,10 +37,9 @@
                     k = k.Substring(desc.KeyPrefix.Length);
                 }
 
-                if (handlers.ContainsKey(k))
-                {
-                    handlers[k](v);
-                }
+                var finder = _cache.GetCachedSelector(desc);
+                var h = finder.Find(handlers, k);
+                if (h != null) { h(v); }
             }
         }
     }

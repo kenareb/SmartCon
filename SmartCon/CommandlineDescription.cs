@@ -44,9 +44,36 @@
         public string KeyPrefix { get; set; }
 
         /// <summary>
+        /// Defines wether or not a partial match of an argument will be handled.
+        /// </summary>
+        /// <para>
+        /// With <c>MatchSubstringIfPossible</c> set to <c>true</c> the following
+        /// two arguments will match the same <c>ArgumentHandler</c>, as long as
+        /// no duplicate matches exist.
+        /// </para>
+        /// <code>
+        /// copy -source=c:\temp
+        /// copy -s=c:\temp
+        /// </code>
+        public bool MatchSubstringIfPossible { get; set; }
+
+        /// <summary>
+        /// Specifies wether or not the arguments a interpreted casesensitive.
+        /// </summary>
+        /// <para>
+        /// With <c>CaseSensitive</c> set to <c>true</c> the following
+        /// two arguments will match the same <c>ArgumentHandler</c>.
+        /// </para>
+        /// <code>
+        /// copy -S=c:\temp
+        /// copy -s=c:\temp
+        /// </code>
+        public bool CaseSensitive { get; set; }
+
+        /// <summary>
         /// The Default commandline style "-f=filename"
         /// </summary>
-        public static CommandLineDescription DefaultCommandLine = new CommandLineDescription();
+        public static CommandLineDescription DefaultCommandLine = new CommandLineDescription("-", "=");
 
         /// <summary>
         /// Linux commandline style, same as <c>DefaultCommandLine</c>.
@@ -84,6 +111,21 @@
         {
             KeyPrefix = prefix;
             KeyValueSeparator = separator;
+            MatchSubstringIfPossible = false;
+            CaseSensitive = true;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <c>CommandLineDescription</c> class.
+        /// </summary>
+        /// <param name="prefix">The prefix used to identify commandline argument keys.</param>
+        /// <param name="separator">The separator used to split key and value in a commandline argument.</param>
+        public CommandLineDescription(string prefix, string separator, bool matchSubstring, bool matchCaseSensitive)
+        {
+            KeyPrefix = prefix;
+            KeyValueSeparator = separator;
+            MatchSubstringIfPossible = matchSubstring;
+            CaseSensitive = matchCaseSensitive;
         }
     }
 }
