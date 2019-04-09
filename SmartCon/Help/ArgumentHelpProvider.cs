@@ -1,58 +1,90 @@
 ﻿namespace SmartCon.Help
 {
-    using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Text;
 
     /// <summary>
-    /// The <c>ArgumentHelpProvider</c> class is fesponsible for keeping track of
+    /// The <c>ArgumentHelpProvider</c> class is responsible for keeping track of
     /// the documentation used for the 'Usage' or 'GetHelp' method of a console app.
     /// </summary>
     public sealed class ArgumentHelpProvider
     {
-        private ConcurrentDictionary<string, string> _examples = new ConcurrentDictionary<string, string>();
-        private ConcurrentDictionary<string, string> _documentation = new ConcurrentDictionary<string, string>();
-        private TextIndent _indent = new TextIndent();
+        private List<ArgumentHelpEntry> _argHelpEntries = new List<ArgumentHelpEntry>();
+        private CommandLineDescription _cmd = CommandLineDescription.DefaultCommandLine;
+        private TextIndent _indent = new TextIndent(new SmartConsoleOptions());
         private StringBuilder _builder = new StringBuilder();
 
+        /// <summary>
+        /// Initializes a new instance of the <c>ArgumentHelpProvider</c> class.
+        /// </summary>
         public ArgumentHelpProvider()
         {
+            InitFromConfig();
             _indent.IncreaseIndentationLevel();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <c>ArgumentHelpProvider</c> class.
+        /// </summary>
+        /// <param name="cmd">The <see cref="CommandLineDescription"/> used to build the help text.</param>
+        public ArgumentHelpProvider(CommandLineDescription cmd) : base()
+        {
+            _cmd = cmd;
         }
 
         /// <summary>
         /// Registers a new documentation entry for a commandline argument.
         /// </summary>
-        /// <param name="key">The key of the commandline argument.</param>
-        /// <param name="example">An example text.</param>
-        /// <param name="description">The description for the commandline argument.</param>
-        public void RegisterDocumentation(string key, string example, string description)
+        /// <param name="entry">An arguemnt help entry.</param>
+        public void RegisterDocumentation(ArgumentHelpEntry entry)
         {
-            _examples[key] = example;
-            _documentation[key] = description;
+            _argHelpEntries.Add(entry);
         }
 
         /// <summary>
         /// Gets the documentation for all registered commandling arguments / keys.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A documentation string as defined in the app.config file.</returns>
         public string GetDocumentation()
         {
             _builder.Clear();
 
-            foreach (var kvp in _examples)
-            {
-                _builder.AppendLine(_examples[kvp.Key]);
+            var exe = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            _builder.Append("Usage: " + exe);
 
-                if (_documentation.ContainsKey(kvp.Key))
-                {
-                    _builder.AppendLine(_indent.IndentInput(_documentation[kvp.Key]));
-                    _builder.AppendLine();
-                }
+            foreach (var entry in _argHelpEntries)
+            {
+                _builder.Append(" " + entry.GetShortInfo(_cmd));
+            }
+
+            _builder.AppendLine();
+            _builder.AppendLine();
+
+            foreach (var entry in _argHelpEntries)
+            {
+                _builder.AppendLine(entry.GetShortInfo(_cmd));
+                _builder.AppendLine(_indent.IndentInput(entry.Documentation));
+                _builder.AppendLine();
             }
 
             return _builder.ToString();
+        }
+
+        /// <summary>
+        /// Initializes the <c>ArgumentHelpProvider</c> from the configuration defined help data.
+        /// </summary>
+        private void InitFromConfig()
+        {
+            var help = ConfigurationManager.GetSection(HelpSection.SectionName) as HelpSection;
+            if (help != null)
+            {
+                foreach (HelpEntryElement entry in help.HelpEntries)
+                {
+                    var h = new ArgumentHelpEntry(entry);
+                    RegisterDocumentation(h);
+                }
+            }
         }
     }
 }

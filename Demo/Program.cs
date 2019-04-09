@@ -1,6 +1,7 @@
 ﻿namespace Demo
 {
     using SmartCon;
+    using SmartCon.Help;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -42,17 +43,10 @@
 
         private static void GetHelp()
         {
-            var help = @"
-Usage: Demo.exe [-h] -f=<filename>
+            var hp = new ArgumentHelpProvider();
+            var help = hp.GetDocumentation();
 
--h
-    Shows this help page.
-
--f=<filename>
-    Looks for the given file
-";
-
-            _console.Options.IncreaseIndent();
+            _console.WriteLine();
             _console.WriteLine(help);
 
             Environment.Exit(0);
