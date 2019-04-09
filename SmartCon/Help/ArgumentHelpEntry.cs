@@ -6,10 +6,17 @@
     /// </summary>
     public class ArgumentHelpEntry
     {
+        /// <summary>
+        /// Initialises a new <c>ArgumentHelpEntry</c>
+        /// </summary>
         public ArgumentHelpEntry()
         {
         }
 
+        /// <summary>
+        /// Initialises a new <c>ArgumentHelpEntry</c>
+        /// </summary>
+        /// <param name="helpElement">The <see cref="HelpEntryElement"/> to set up initial values.</param>
         public ArgumentHelpEntry(HelpEntryElement helpElement)
         {
             Key = helpElement.Key;
@@ -32,16 +39,16 @@
         /// </summary>
         public string Documentation { get; set; }
 
+        /// <summary>
+        /// Gets the short information about the help entry.
+        /// </summary>
+        /// <param name="cmd">The <see cref="CommandLineDescription"/> will be used to format the information text.</param>
+        /// <returns>A short information text for this help entry.</returns>
         public string GetShortInfo(CommandLineDescription cmd)
         {
-            if (string.IsNullOrEmpty(ExampleArgumentValue))
-            {
-                return cmd.KeyPrefix + Key + " ";
-            }
-            else
-            {
-                return cmd.KeyPrefix + Key + cmd.KeyValueSeparator + ExampleArgumentValue + " ";
-            }
+            return string.IsNullOrEmpty(ExampleArgumentValue)
+                ? cmd.KeyPrefix + Key + " "
+                : cmd.KeyPrefix + Key + cmd.KeyValueSeparator + ExampleArgumentValue + " ";
         }
     }
 }

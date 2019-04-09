@@ -13,6 +13,7 @@
     <license type="file">LICENSE.txt</license>
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
+      <dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
     </dependencies>
     <tags>Console Commandline Arguments stdin stdout cin cout cmd shell library</tags>
     <releaseNotes>
