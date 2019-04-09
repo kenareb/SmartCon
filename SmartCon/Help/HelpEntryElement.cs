@@ -2,8 +2,15 @@
 {
     using System.Configuration;
 
+    /// <summary>
+    /// The <c>HelpEntryElement</c> class contains all information, which can be stored in
+    /// a configuration element of the <c>app.config</c> file.
+    /// </summary>
     public class HelpEntryElement : ConfigurationElement
     {
+        /// <summary>
+        /// The key property.
+        /// </summary>
         [ConfigurationProperty("key", IsRequired = true, IsKey = true)]
         public string Key
         {
@@ -11,6 +18,9 @@
             set { this["key"] = value; }
         }
 
+        /// <summary>
+        /// The argument example string.
+        /// </summary>
         [ConfigurationProperty("arg", IsRequired = false)]
         public string Arg
         {
@@ -18,6 +28,9 @@
             set { this["arg"] = value; }
         }
 
+        /// <summary>
+        /// The description of the key/argument combination.
+        /// </summary>
         [ConfigurationProperty("description", IsRequired = false)]
         public string Description
         {
