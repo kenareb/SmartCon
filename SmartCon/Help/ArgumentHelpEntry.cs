@@ -25,6 +25,17 @@
         }
 
         /// <summary>
+        /// Initialises a new <c>ArgumentHelpEntry</c>
+        /// </summary>
+        /// <param name="helpAttribute">The <see cref="DocumentationAttribute"/> to set up initial values.</param>
+        public ArgumentHelpEntry(DocumentationAttribute helpAttribute)
+        {
+            Key = helpAttribute.Key;
+            ExampleArgumentValue = helpAttribute.ArgumentExample;
+            Documentation = helpAttribute.Description;
+        }
+
+        /// <summary>
         /// The Key of the commandline argument.
         /// </summary>
         public string Key { get; set; }

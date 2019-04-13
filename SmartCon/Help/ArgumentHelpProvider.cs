@@ -1,5 +1,6 @@
 ﻿namespace SmartCon.Help
 {
+    using System;
     using System.Collections.Generic;
     using System.Configuration;
     using System.Text;
@@ -21,6 +22,24 @@
         public ArgumentHelpProvider()
         {
             InitFromConfig();
+            _indent.IncreaseIndentationLevel();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <c>ArgumentHelpProvider</c> class.
+        /// </summary>
+        public ArgumentHelpProvider(Type myTpe)
+        {
+            InitFromType(myTpe);
+            _indent.IncreaseIndentationLevel();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <c>ArgumentHelpProvider</c> class.
+        /// </summary>
+        public ArgumentHelpProvider(object myObject)
+        {
+            InitFromObject(myObject);
             _indent.IncreaseIndentationLevel();
         }
 
@@ -84,6 +103,42 @@
                     var h = new ArgumentHelpEntry(entry);
                     RegisterDocumentation(h);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Initializes the <c>ArgumentHelpProvider</c> from the specified type by reading the
+        /// <see cref="DocumentationAttribute"/>.
+        /// </summary>
+        /// <param name="myType">The type use as documentation source.</param>
+        private void InitFromType(Type myType)
+        {
+            if (myType != null)
+            {
+                var attr = myType.GetCustomAttributes(typeof(DocumentationAttribute), true);
+                foreach (var a in attr)
+                {
+                    var entry = a as DocumentationAttribute;
+                    if (entry != null)
+                    {
+                        var h = new ArgumentHelpEntry(entry);
+                        RegisterDocumentation(h);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes the <c>ArgumentHelpProvider</c> from the specified object by reading the
+        /// <see cref="DocumentationAttribute"/> from the objects type.
+        /// </summary>
+        /// <param name="myObject">The object use as documentation source.</param>
+        private void InitFromObject(object myObject)
+        {
+            if (myObject != null)
+            {
+                var t = myObject.GetType();
+                InitFromType(t);
             }
         }
     }
