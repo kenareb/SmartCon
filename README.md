@@ -104,7 +104,8 @@ SmartCon offers two possibilities of defining data for the commandline help.
 ### Define help in the App.config file.
 
 Example:
-```
+
+```XML
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
