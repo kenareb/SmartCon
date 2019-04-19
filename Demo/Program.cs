@@ -1,13 +1,12 @@
 ﻿namespace Demo
 {
     using SmartCon;
+    using SmartCon.Help;
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
+    [Documentation(Key = "h", Description = "Shows this help page.")]
+    [Documentation(Key = "f", ArgumentExample = "filename", Description = "Looks for the given file.")]
     internal class Program
     {
         private static SmartConsole _console = new SmartConsole();
@@ -17,7 +16,7 @@
         {
             var handler = new ArgumentProcessor();
             // handler.CommandLineDescription = CommandLineDescription.DotNetStyle; // Demo -f=Demo.exe
-            // handler.CommandLineDescription = CommandLineDescription.CmdStyle; // Demo /f Demo.exe
+            // handler.CommandLineDescription = CommandLineDescription.CmdStyle;    // Demo /f Demo.exe
 
             handler.RegisterArgument("h", (v) => GetHelp());
             handler.RegisterArgument("f", (v) => SetFilename(v));
@@ -42,17 +41,11 @@
 
         private static void GetHelp()
         {
-            var help = @"
-Usage: Demo.exe [-h] -f=<filename>
+            // var hp = new ArgumentHelpProvider();             // Read documentation from App.config.
+            var hp = new ArgumentHelpProvider(typeof(Program)); // Read documentation from class attributes.
+            var help = hp.GetDocumentation();
 
--h
-    Shows this help page.
-
--f=<filename>
-    Looks for the given file
-";
-
-            _console.Options.IncreaseIndent();
+            _console.WriteLine();
             _console.WriteLine(help);
 
             Environment.Exit(0);
