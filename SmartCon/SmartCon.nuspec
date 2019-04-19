@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>SmartCon</id>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <authors>Marcus Beranek / SmartCon</authors>
     <owners>Marcus Beranek / SmartCon</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -12,11 +12,13 @@
     <repository type="git" url="https://github.com/kenareb/SmartCon.git" />
     <license type="file">LICENSE.txt</license>
     <dependencies>
-      <group targetFramework=".NETStandard2.0" />
-      <dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
+      </group>
     </dependencies>
     <tags>Console Commandline Arguments stdin stdout cin cout cmd shell library</tags>
     <releaseNotes>
+      - v.1.2.1: Added support for commandline help. Help texts can be defined in app.config files.
       - v.1.2.0: Added support for case insensitive argument handling; introduced new namespaces and interfaces.
       - v.1.1.1: Added support for npm like commandlines, for example "npm adduser --registry=blafoo". Added more strategies for command line processing. Code clean-up and refactoring.
     </releaseNotes>

@@ -5,7 +5,7 @@
     using System;
     using System.IO;
 
-    [Documentation(Key = "h", ArgumentExample = "", Description = "Shows this help page.")]
+    [Documentation(Key = "h", Description = "Shows this help page.")]
     [Documentation(Key = "f", ArgumentExample = "filename", Description = "Looks for the given file.")]
     internal class Program
     {
