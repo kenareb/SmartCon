@@ -15,7 +15,7 @@ variables:
   buildConfiguration: 'Release'
   major: 1
   minor: 3
-  rev: $[counter(variables['major']+'.' + variables['minor'}], 1)]
+  rev: $[counter(variables['major'] +'.' + variables['minor'], 1)]
 
 steps:
 - task: NuGetToolInstaller@0
