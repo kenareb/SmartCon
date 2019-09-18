@@ -4,6 +4,7 @@ namespace SmartConTests
     using Moq;
     using SmartCon;
     using System.Collections.Generic;
+    using SmartCon.Strategies;
 
     [TestClass]
     public class VisitorStrategyTests

@@ -1,4 +1,4 @@
-﻿namespace SmartCon
+﻿namespace SmartCon.Strategies
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     /// The <c>ProcessingStrategy</c> is the base class for all strategies
     /// to process commandline arguments.
     /// </summary>
-    public abstract class ProcessingStrategy
+    public abstract class ProcessingStrategy : IProcessingStrategy
     {
         /// <summary>
         /// Processes the given commandline arguments.
