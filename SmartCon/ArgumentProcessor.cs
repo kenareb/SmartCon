@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using SmartCon.Strategies;
 
     /// <summary>
     /// The <c>ArgumentProcessor</c> class is responsible for processing and interpretation of the
@@ -92,11 +93,11 @@
         /// depending on the current <c>CommandLineDescription</c>
         /// </summary>
         /// <returns>A <c>ProcessingStrategy</c>.</returns>
-        protected virtual ProcessingStrategy GetStrategy()
+        protected virtual IProcessingStrategy GetStrategy()
         {
-            ProcessingStrategy strategy = CommandLineDescription.KeyValueSeparator == " "
-                ? new WithoutSeparator() as ProcessingStrategy
-                : new WithSeparator() as ProcessingStrategy;
+            var strategy = CommandLineDescription.KeyValueSeparator == " "
+                ? new WithoutSeparator() as IProcessingStrategy
+                : new WithSeparator() as IProcessingStrategy;
 
             return strategy;
         }

@@ -1,10 +1,11 @@
-﻿namespace DemoNPM
+﻿using SmartCon;
+
+namespace DemoNPM
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Collections.Concurrent;
-    using SmartCon;
 
     public class Program
     {
@@ -14,7 +15,7 @@
              * The current example demonstrated how to setup a command line handling
              * like the "npm" program has.
              *
-             * The "install" command treats all following arguments as packeges to install.
+             * The "install" command treats all following arguments as packages to install.
              * Whereas the "adduser" command expects a "-registry" argument to provided.
              *
              * You can call this program with the following arguments:

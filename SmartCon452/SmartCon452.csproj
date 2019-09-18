@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3FFB9D3-010E-4422-82A3-5EAC204CED48}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SmartCon</RootNamespace>
+    <AssemblyName>SmartCon</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SmartCon\ArgumentHandler.cs">
+      <Link>ArgumentHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\ArgumentProcessor.cs">
+      <Link>ArgumentProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\CommandlineDescription.cs">
+      <Link>CommandlineDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\CommandProcessor.cs">
+      <Link>CommandProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Extensions\IDictionaryExtension.cs">
+      <Link>Extensions\IDictionaryExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Help\ArgumentHelpEntry.cs">
+      <Link>Help\ArgumentHelpEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Help\ArgumentHelpProvider.cs">
+      <Link>Help\ArgumentHelpProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Help\DocumentationAttribute.cs">
+      <Link>Help\DocumentationAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Help\HelpEntryCollection.cs">
+      <Link>Help\HelpEntryCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Help\HelpEntryElement.cs">
+      <Link>Help\HelpEntryElement.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Help\HelpSection.cs">
+      <Link>Help\HelpSection.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\IArgumentProcessor.cs">
+      <Link>IArgumentProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\ICommandRegistry.cs">
+      <Link>ICommandRegistry.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\IDelegateSelector.cs">
+      <Link>IDelegateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\IProcessingStrategy.cs">
+      <Link>IProcessingStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\PostProcessHandler.cs">
+      <Link>PostProcessHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\SmartConsole.cs">
+      <Link>SmartConsole.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\SmartConsoleOptions.cs">
+      <Link>SmartConsoleOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\CommandStrategy.cs">
+      <Link>Strategies\CommandStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\DelegateSelector.cs">
+      <Link>Strategies\DelegateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\DelegateSelectorCache.cs">
+      <Link>Strategies\DelegateSelectorCache.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\ExactKeySelector.cs">
+      <Link>Strategies\ExactKeySelector.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\ProcessingStrategy.cs">
+      <Link>Strategies\ProcessingStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\SubKeySelector.cs">
+      <Link>Strategies\SubKeySelector.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\VisitorStrategy.cs">
+      <Link>Strategies\VisitorStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\WithoutSeparator.cs">
+      <Link>Strategies\WithoutSeparator.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\Strategies\WithSeparator.cs">
+      <Link>Strategies\WithSeparator.cs</Link>
+    </Compile>
+    <Compile Include="..\SmartCon\TextIndent.cs">
+      <Link>TextIndent.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
