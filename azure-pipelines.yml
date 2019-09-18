@@ -28,7 +28,7 @@ steps:
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
+    configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
@@ -39,7 +39,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
-    versioningScheme: 'byPrereleaseNumber'
+#    versioningScheme: 'byPrereleaseNumber'
     majorVersion: 1
     minorVersion: 3
     patchVersion: $(rev)
