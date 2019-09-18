@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.beranek.de/Glossar.xsd">
   <Items Label="bash" Description="Bourne-Again shell." />
-  <Items Label="CMD" Description="Oldschool Commandline in Windows." />
+  <Items Label="cmd" Description="Oldschool Commandline in Windows." />
+  <Items Label="zsh" Description="Z Shell" />
 </Data>
