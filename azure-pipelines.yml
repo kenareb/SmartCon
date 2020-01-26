@@ -39,7 +39,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
-    versioningScheme: 'byPrereleaseNumber'
+#    versioningScheme: 'byPrereleaseNumber'
     majorVersion: 1
     minorVersion: 3
     patchVersion: $(rev)
