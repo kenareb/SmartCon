@@ -54,6 +54,16 @@ namespace SmartConTests
             mockDictionary["output"] = mockOutput.Object;
         }
 
+        private void SetupDictWithPrefixCollision()
+        {
+            mockDictionary = new Dictionary<string, ArgumentHandler>();
+            mockDictionary["help"] = mockHelp.Object;
+            mockDictionary["helpme"] = mockHelpCollision.Object;
+            mockDictionary["file"] = mockFile.Object;
+            mockDictionary["filter"] = mockFileCollision.Object;
+            mockDictionary["output"] = mockOutput.Object;
+        }
+        
         private SubKeySelector CreateSubKeyFinderCS()
         {
             return new SubKeySelector(true);
@@ -90,6 +100,20 @@ namespace SmartConTests
 
             // Assert
             Assert.IsNull(actual);
+        }
+        
+        [TestMethod]
+        public void Must_Find_Help_Whith_Prefix_Collision()
+        {
+            // Arrange
+            SetupDictWithPrefixCollision();
+            var unitUnderTest = CreateSubKeyFinderCS();
+
+            // Act
+            var actual = unitUnderTest.Find(mockDictionary, "help");
+
+            // Assert
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod]
