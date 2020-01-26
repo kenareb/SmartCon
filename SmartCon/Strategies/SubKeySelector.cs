@@ -37,9 +37,22 @@
                 ? handlers.Where(a => a.Key.StartsWith(key))
                 : handlers.Where(a => a.Key.ToLower().StartsWith(key.ToLower()));
 
-            if (possibleHandles.Count() == 1)
+            var entriesFound = possibleHandles.Count();
+            if (entriesFound == 1)
             {
                 h = possibleHandles.First().Value;
+            }
+            else if (entriesFound > 1)
+            {
+                possibleHandles = _caseSensitive
+                    ? handlers.Where(a => a.Key == key)
+                    : handlers.Where(a => a.Key.ToLower() == key.ToLower());
+                
+                entriesFound = possibleHandles.Count();
+                if (entriesFound == 1)
+                {
+                    h = possibleHandles.First().Value;
+                }
             }
 
             return h;
