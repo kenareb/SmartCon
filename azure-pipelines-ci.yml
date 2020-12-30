@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'windows-latest'
@@ -13,12 +13,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  rev: $[counter('1.3', 0)]
 
 steps:
-- task: NuGetToolInstaller@0
-  inputs:
-    versionSpec: 4.9.3
+- task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
@@ -35,23 +32,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.nuspec'
-#    versioningScheme: 'byPrereleaseNumber'
-    majorVersion: 1
-    minorVersion: 3
-    patchVersion: $(rev)
-
 - task: CRAnalyzeTask@201
   inputs:
     solution: '**/*.sln'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '/14e77891-973f-4505-be74-76e6a214c32b'
-    
+    configuration: '$(buildConfiguration)'
