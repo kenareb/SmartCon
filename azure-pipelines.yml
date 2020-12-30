@@ -44,6 +44,10 @@ steps:
     minorVersion: 3
     patchVersion: $(rev)
 
+- task: CRAnalyzeTask@201
+  inputs:
+    solution: '**/*.sln'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
