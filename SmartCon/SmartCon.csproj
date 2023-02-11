@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright (C) 2019 Marcus Beranek</Copyright>
+    <Copyright>Copyright (C) 2023 Marcus Beranek</Copyright>
     <PackageProjectUrl>https://github.com/kenareb/SmartCon</PackageProjectUrl>
     <RepositoryUrl>https://github.com/kenareb/SmartCon.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -18,8 +18,16 @@
     </NuspecFile>
     <AssemblyVersion>1.2.3.0</AssemblyVersion>
     <FileVersion>1.2.3.0</FileVersion>
-    <Version>1.2.0</Version>
+    <Version>1.2.3</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />

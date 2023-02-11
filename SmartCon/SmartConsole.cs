@@ -98,16 +98,15 @@
         /// <seealso cref="Console.WriteLine(string, object[])"/>
         public void WriteLine(string format, params object[] arg)
         {
-            if (_options.IndentationLevel > 0)
-            {
-                var text = String.Format(_writer.FormatProvider, format, arg);
-                var indented = _indent.IndentInput(text);
-                _writer.WriteLine(indented);
-            }
-            else
-            {
-                _writer.WriteLine(format, arg);
-            }
+            var text = arg.Length == 0
+                ? format
+                : String.Format(_writer.FormatProvider, format, arg);
+
+            string indented = _options.IndentationLevel > 0
+                ? _indent.IndentInput(text)
+                : text;
+
+            _writer.WriteLine(indented);
         }
 
         /// <summary>
@@ -118,16 +117,15 @@
         /// <seealso cref="Console.Write(string, object[])"/>
         public void Write(string format, params object[] arg)
         {
-            if (_options.IndentationLevel > 0)
-            {
-                var text = String.Format(_writer.FormatProvider, format, arg);
-                var indented = _indent.IndentInput(text);
-                _writer.Write(indented);
-            }
-            else
-            {
-                _writer.WriteLine(format, arg);
-            }
+            var text = arg.Length == 0
+               ? format
+               : String.Format(_writer.FormatProvider, format, arg);
+
+            string indented = _options.IndentationLevel > 0
+                ? _indent.IndentInput(text)
+                : text;
+
+            _writer.Write(indented);
         }
 
         /// <summary>
