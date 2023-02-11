@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
-  <metadata>
-    <id>SmartCon</id>
-    <version>1.2.4</version>
-    <authors>Marcus Beranek / SmartCon</authors>
-    <owners>Marcus Beranek / SmartCon</owners>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <projectUrl>https://github.com/kenareb/SmartCon</projectUrl>
-    <description>SmartCon is a small collection of console tools for .NET. Offers processing of commandline arguments with different flavours of commandline switches.</description>
-    <copyright>Copyright (C) 2019 Marcus Beranek</copyright>
-    <repository type="git" url="https://github.com/kenareb/SmartCon.git" />
-    <license type="file">LICENSE.txt</license>
-    <dependencies>
-      <group targetFramework=".NETStandard2.0">
-        <dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
-      </group>
-    </dependencies>
-    <tags>Console Commandline Arguments stdin stdout cin cout cmd shell library</tags>
-    <releaseNotes>
-      - v.1.2.3: Corrected versioning for .NET 4.5 version.
-      - v.1.2.2: Added support .NET 4.5.
-      - v.1.2.1: Added support for commandline help. Help texts can be defined in app.config files.
-      - v.1.2.0: Added support for case insensitive argument handling; introduced new namespaces and interfaces.
-      - v.1.1.1: Added support for npm like commandlines, for example "npm adduser --registry=blafoo". Added more strategies for command line processing. Code clean-up and refactoring.
-    </releaseNotes>
-  </metadata>
-  <files>
-    <file src="bin\Release\netstandard2.0\SmartCon.dll" target="lib\netstandard2.0\SmartCon.dll" />
-    <file src="..\SmartCon452\bin\Release\SmartCon.dll" target="lib\net45\SmartCon.dll" />
-    <file src="LICENSE.txt" target="LICENSE.txt" />
-  </files>
+	<metadata>
+		<id>SmartCon</id>
+		<version>1.2.5</version>
+		<authors>Marcus Beranek / SmartCon</authors>
+		<owners>Marcus Beranek / SmartCon</owners>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<projectUrl>https://github.com/kenareb/SmartCon</projectUrl>
+		<description>SmartCon is a small collection of console tools for .NET. Offers processing of commandline arguments with different flavours of commandline switches.</description>
+		<copyright>Copyright (C) 2019 Marcus Beranek</copyright>
+		<repository type="git" url="https://github.com/kenareb/SmartCon.git" />
+		<license type="file">LICENSE.txt</license>
+		<dependencies>
+			<group targetFramework=".NETStandard2.0">
+				<dependency id="System.Configuration.ConfigurationManager" version="4.5.0" />
+			</group>
+		</dependencies>
+		<tags>Console Commandline Arguments stdin stdout cin cout cmd shell library</tags>
+		<releaseNotes>
+			- v.1.2.5: Bugfix formatstring.
+			- v.1.2.3: Corrected versioning for .NET 4.5 version.
+			- v.1.2.2: Added support .NET 4.5.
+			- v.1.2.1: Added support for commandline help. Help texts can be defined in app.config files.
+			- v.1.2.0: Added support for case insensitive argument handling; introduced new namespaces and interfaces.
+			- v.1.1.1: Added support for npm like commandlines, for example "npm adduser --registry=blafoo". Added more strategies for command line processing. Code clean-up and refactoring.
+		</releaseNotes>
+	</metadata>
+	<files>
+		<file src="bin\Release\netstandard2.0\SmartCon.dll" target="lib\netstandard2.0\SmartCon.dll" />
+		<file src="..\SmartCon452\bin\Release\SmartCon.dll" target="lib\net45\SmartCon.dll" />
+		<file src="LICENSE.txt" target="LICENSE.txt" />
+	</files>
 </package>
