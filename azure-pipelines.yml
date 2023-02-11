@@ -39,7 +39,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
-#    versioningScheme: 'byPrereleaseNumber'
+    versioningScheme: 'byPrereleaseNumber'
     majorVersion: 1
     minorVersion: 3
     patchVersion: $(rev)
@@ -53,5 +53,11 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-#    publishVstsFeed: '14e77891-973f-4505-be74-76e6a214c32b'
     publishVstsFeed: 'SmartCon'
+
+#- task: NuGetCommand@2
+#  inputs:
+#    command: 'push'
+#    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#    nuGetFeedType: 'external'
+#    publishFeedCredentials: 'Nuget-Beranek'
