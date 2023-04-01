@@ -218,3 +218,6 @@ Usage: Demo -f=filename  -h
     Shows this help page.
 
 ```
+
+Furhter description of how to process command line switches and how to set up command line help can be found on my 
+blog posts [SmartCon Part-1](https://blog.beranek.de/2023/02/11/smartcon-part-1/) and [SmartCon Part-2](https://blog.beranek.de/2023/04/01/smartcon-part-2/).
